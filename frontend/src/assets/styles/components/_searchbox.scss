@@ -1,0 +1,28 @@
+
+.search-input {
+    flex-basis: 100%;
+    border: 0px solid;
+    outline: none;
+    text-indent: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+
+.search-btn {
+    display: flex;
+    justify-content: center;
+    min-width: 50px;
+    margin: 10px;   
+}
+
+.search-box {
+    height: 47px;
+    background-color: $clr1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #DCDCDC;
+    flex-basis:340px
+}

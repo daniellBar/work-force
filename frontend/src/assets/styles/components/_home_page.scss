@@ -1,0 +1,47 @@
+.log-container {
+  margin: 10% auto;
+  height: 500px;
+  width: 450px;
+  background-color: $clr1;
+  border-radius: 20px;
+}
+
+.login-container {
+  height: 100%;
+  .login-title {
+    color: $clr5;
+    margin-top: 30px;
+  }
+  .login-description {
+    color: $clr8;
+  }
+}
+
+.login-form {
+  width: 400px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  .login-form-pass {
+    margin-top: 20px;
+  }
+  .login-btn {
+    width: 400px;
+    background-color: $clr5;
+    height: 55px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 25px;
+    color: $clr1;
+  }
+}
+
+.MuiOutlinedInput-root {
+  &.Mui-focused fieldset {
+    border-color: $clr5 !important;
+  }
+}
+.MuiInputLabel-root {
+  &.Mui-focused {
+    color: $clr8 !important;
+  }
+}

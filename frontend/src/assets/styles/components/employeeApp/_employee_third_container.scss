@@ -1,0 +1,105 @@
+//employee-third-container
+.employee-third-container {
+    flex-basis: 790px;
+}
+
+.pagination-top{
+    margin-bottom: 10px;
+}
+
+.employee-sorting-row {
+    height: 40px;
+    width: 100%;
+    background-color: $clr2;
+}
+
+.sort-col0 {
+    flex-basis: 100px;
+}
+
+.sort-col1 {
+    flex-basis: 220px;
+}
+
+.sort-col2,.sort-col3,.sort-col4 {
+    flex-basis: 162px;
+}
+
+.sort-title {
+    font-size: rem(12px);
+    font-family: montserrat-bold;
+}
+
+.sort-btns{
+    padding-left: 3px;
+}
+
+.employee-list {
+    margin-bottom: 3px;
+}
+
+.employee-preview {
+    display: flex;
+    width: 100%;
+    background-color: $clr1;
+    min-height: 80px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.bold {
+    font-family: montserrat-bold;
+    color: $clr8;
+    font-size: rem(15px);
+}
+
+.light {
+    font-size: rem(14px);
+    color: $clr8;
+}
+
+.col0 {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100px;
+    .profile-img {
+        object-fit: none;
+    }
+}
+
+.col1 {
+    flex-basis: 220px;
+    display: flex;
+    flex-direction: column;
+}
+.col2,
+.col3 {
+    flex-basis: 162px;
+    margin-bottom: 24px;
+}
+
+.col4 {
+    display: flex;
+    flex-basis: 162px;
+    .vl {
+        border-left: 2px solid $clr8;
+        margin: 0 25px;
+    }
+    .del-btn {
+        color: $clr8;
+        &:hover {
+            color: #ff0f0f;
+        }
+    }
+    .edit-btn {
+        color: $clr8;
+        &:hover {
+            color: $clr5;
+        }
+    }
+}
+
+.pagination-bottom{
+    margin-top: 10px;
+}

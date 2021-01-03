@@ -1,0 +1,30 @@
+.main-header {
+  height: 80px;
+  background-color: $clr1;
+  color: $clr3;
+  font-weight: 600;
+}
+
+.right-nav {
+  > * {
+    padding: 0 10px;
+  }
+  .nav-btn:link,
+  .nav-btn:visited {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: montserrat;
+    color: $clr3;
+  }
+
+  .nav-btn {
+    &.active {
+      border-bottom: 3px solid $clr5;
+      padding-bottom: 28px;
+    }
+  }
+}
+
+.logo-icon {
+  height: 50px;
+}
