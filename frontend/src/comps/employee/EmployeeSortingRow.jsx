@@ -41,6 +41,7 @@ export class EmployeeSortingRow extends Component {
                 </div>
                 <div className="sort-col4 sort-title">MANAGE</div>
             </section>
+            // <section className=""></section>
         )
     }
 }

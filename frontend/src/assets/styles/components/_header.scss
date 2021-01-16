@@ -1,11 +1,12 @@
 .main-header {
-  height: 80px;
+  min-height: 80px;
   background-color: $clr1;
   color: $clr3;
   font-weight: 600;
 }
 
 .right-nav {
+  display: flex;
   > * {
     padding: 0 10px;
   }
@@ -15,16 +16,45 @@
     text-transform: uppercase;
     font-family: montserrat;
     color: $clr3;
+    @include for-mobile-layout {
+      font-size: rem(15px);
+    }
   }
 
   .nav-btn {
     &.active {
       border-bottom: 3px solid $clr5;
       padding-bottom: 28px;
+      @include for-mobile-layout {
+        padding-bottom: 16px;
+      }
     }
   }
 }
 
 .logo-icon {
   height: 50px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include for-mobile-layout {
+    flex-direction: column;
+    align-items: start;
+    margin-top: 6px;
+    margin-bottom: 15px;
+  }
+  .left-nav {
+    @include for-mobile-layout {
+      margin-top: 20px;
+    }
+  }
+}
+
+.admin-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -14,18 +14,12 @@ export function loadEmployees(filterBy = {}) {
 
 export function removeEmployee(employeeId) {
   return async dispatch => {
-    try{
+    try {
       await employeeService.remove(employeeId)
       dispatch({ type: 'REMOVE_EMPLOYEE', employeeId })
     }
-    catch(err){
+    catch (err) {
       console.log('employeeActions: err in removeEmployee ', err);
     }
-    } 
-}
-
-export function setFilter(filterBy) {
-  return async dispatch => {
-    dispatch({ type: 'SET_FILTER', filterBy })
   }
 }

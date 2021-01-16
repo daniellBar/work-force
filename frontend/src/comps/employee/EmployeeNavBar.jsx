@@ -14,7 +14,7 @@ class _EmployeeNavBar extends Component {
         return (
             <section className="employee-header">
                 <SearchBox buildFilterBy={buildFilterBy} />
-                <div className="btn add-employee-btn" onClick={this.handleClick}>add employee</div>
+                <div className="btn add-employee-btn" onClick={this.handleClick}>Add Employee</div>
             </section>
         )
     }

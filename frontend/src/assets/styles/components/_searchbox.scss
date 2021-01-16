@@ -24,5 +24,9 @@
     display: flex;
     align-items: center;
     border: 1px solid #DCDCDC;
-    flex-basis:340px
+    flex-basis:340px;
+    @include for-mobile-layout {
+    flex-basis: 260px;
+    margin-right: 25px;
+    }
 }

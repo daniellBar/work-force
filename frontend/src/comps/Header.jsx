@@ -12,13 +12,13 @@ export class _Header extends Component {
         const user = this.props.loggedInUser
         return (
             <header className="main-header main-container">
-                <nav className="nav-container flex sb align-center">
-                    <div className="left-nav flex">
+                <nav className="nav-container">
+                    <div className="left-nav">
                         <div className="logo">
                             <img className="logo-icon" src={require("../assets/icons/logo.jpg")} alt="" />
                         </div>
                     </div>
-                    <div className="right-nav flex">
+                    <div className="right-nav">
                         <div className="right-nav-item">
                             <NavLink onClick={this.props.logout} className="nav-btn" exact to="/">{user ? 'Logout' : 'Login'}</NavLink>
                         </div>

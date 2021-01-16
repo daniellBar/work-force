@@ -31,7 +31,7 @@ export class _Login extends React.Component {
 
     handleSubmit = async () => {
         const { password, userName } = this.state
-        if (password != '' && userName != '') {
+        if (password !== '' && userName !== '') {
             const userCreds = {
                 password: password,
                 userName: userName
