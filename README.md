@@ -16,5 +16,5 @@ password: adminovski
 
 to add on next commit:
 1) login creds validation
-2) mobile design/responsiveness
+2) mobile responsiveness for galaxy 
 3) add/edit employee
