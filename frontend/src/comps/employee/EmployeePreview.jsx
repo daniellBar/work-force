@@ -29,7 +29,7 @@ export class EmployeePreview extends Component {
   }
 
   modifyLongText = (str) => {
-    const modifiedStr = str.length > 20 ? `${str.substring(0, 23)}...` : str
+    const modifiedStr = str.length > 25 ? `${str.substring(0, 20)}...` : str
     return modifiedStr
   }
 
