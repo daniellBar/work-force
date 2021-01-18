@@ -1,10 +1,23 @@
+.home{
+  position: relative;
+  height: 100%;
+}
+
 .log-container {
-  margin: 10% auto;
+  background-color: white;
   height: 500px;
   width: 450px;
-  background-color: $clr1;
   border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include for-mobile-layout {
+    width: 350px;
+    height:80%;
+  }
 }
+
 
 .login-container {
   height: 100%;
@@ -14,13 +27,13 @@
   }
   .login-description {
     color: $clr8;
+    text-align: center;
   }
 }
 
 .login-form {
   width: 400px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
   .login-form-pass {
     margin-top: 20px;
   }
@@ -32,6 +45,13 @@
     line-height: 55px;
     margin-top: 25px;
     color: $clr1;
+    @include for-mobile-layout {
+      width: 300px;
+    }
+  }
+  @include for-mobile-layout {
+    width: 300px;
+    margin-top: 10px;
   }
 }
 

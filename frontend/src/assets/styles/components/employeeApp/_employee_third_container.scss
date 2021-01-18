@@ -93,7 +93,7 @@
 .col2,
 .col3 {
     flex-basis: 162px;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
     @include for-mobile-layout {
         display: none;
     }

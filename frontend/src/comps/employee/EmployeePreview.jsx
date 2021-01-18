@@ -29,7 +29,7 @@ export class EmployeePreview extends Component {
   }
 
   modifyLongText = (str) => {
-    const modifiedStr = str.length > 30 ? `${str.substring(0, 23)}...` : str
+    const modifiedStr = str.length > 20 ? `${str.substring(0, 23)}...` : str
     return modifiedStr
   }
 
@@ -45,7 +45,7 @@ export class EmployeePreview extends Component {
           <div className="col1">
             <div className="name bold">{employee.name}</div>
             <div className="position light">{this.modifyLongText(employee.position)}</div>
-            <div className="position light">{employee.mail}</div>
+            <div className="position light">{this.modifyLongText(employee.mail)}</div>
           </div>
           <div className="col2">
             <div className="sal bold">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ILS' }).format(employee.salary)}</div>
