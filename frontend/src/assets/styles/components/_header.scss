@@ -4,7 +4,8 @@
   color: $clr3;
   font-weight: 600;
   @include for-mobile-layout {
-    min-height: 127px;
+    flex-basis: 127px;
+    flex-shrink: 0;
   }
 }
 
