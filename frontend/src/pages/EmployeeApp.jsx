@@ -120,7 +120,6 @@ const mapStateToProps = state => {
         employees: state.employeeReducer.employees,
         filterBy: state.filterReducer.filterBy,
         loggedInUser: state.userReducer.loggedInUser
-
     }
 }
 

@@ -1,6 +1,5 @@
 
 const dbService = require('../../services/db.service')
-// const reviewService = require('../review/review.service')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
@@ -15,8 +14,6 @@ async function query(filterBy = {}) {
     const collection = await dbService.getCollection('employee')
     try {
         const employees = await collection.find(criteria).toArray();
-        console.log(employees);
-
         return employees
     } catch (err) {
         console.log('ERROR: cannot find employees')

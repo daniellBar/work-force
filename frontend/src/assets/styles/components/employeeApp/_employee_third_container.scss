@@ -151,9 +151,16 @@
         flex-basis: 180px;
         margin-left: 100px;
         padding-bottom: 15px;
+        @include for-narrow-mobile-layout {
+            margin-left: 90px;
+         }
+
     }
     .preview-accordion-btns-container {
         flex-basis: 80px;
+        @include for-narrow-mobile-layout {
+            margin-right: 8px;
+         }
         .vl {
             border-left: 2px solid $clr8;
             margin: 0 15px;
@@ -178,6 +185,9 @@
         justify-content: space-evenly;
         margin-bottom: 30px;
     }
+    @include for-narrow-mobile-layout {
+        flex-direction: column;
+    }
 }
 
 .sort-select-container,
@@ -194,5 +204,17 @@
     }
     .MuiInput-underline:after {
         border-bottom: 2px solid $clr5 !important;
+    }
+}
+
+.filter-select-container {
+    @include for-narrow-mobile-layout {
+        margin-bottom: 15px;
+    }
+}
+
+.sort-select-container {
+    @include for-narrow-mobile-layout {
+        margin-bottom: 0;
     }
 }

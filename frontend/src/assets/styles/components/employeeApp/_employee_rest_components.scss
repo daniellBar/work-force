@@ -9,7 +9,10 @@
         margin-bottom: 30px;
         margin-top: 30px;
         align-items: start;
-        min-height: 0;
+        min-height: auto;
+    }
+    @include for-narrow-mobile-layout {
+        flex-direction: column-reverse;
     }
 
     .add-employee-btn {
@@ -24,6 +27,9 @@
             justify-content: center;
             align-items: center;
             margin-right: 5px;
+        }
+        @include for-narrow-mobile-layout {
+            margin-bottom: 15px;
         }
     }
 }
