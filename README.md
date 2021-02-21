@@ -19,5 +19,4 @@ employee page is responsive for iphone plus
 
 to add on next commit:
 1) login creds validation
-2) mobile responsiveness for login page/ for gemployees page on galaxy 
-3) add/edit employee
+2) add/edit employee
