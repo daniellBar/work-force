@@ -7,7 +7,7 @@ import { EmployeeList } from '../comps/employee/EmployeeList.jsx';
 import { EmployeeSideNavBar } from '../comps/employee/EmployeeSideNavBar.jsx';
 import { EmployeeNavBar } from '../comps/employee/EmployeeNavBar.jsx';
 import { EmployeeSortingRow } from '../comps/employee/EmployeeSortingRow.jsx';
-import {EmployeeDropdownsRow} from '../comps/employee/EmployeeDropdownsRow.jsx';
+import { EmployeeDropdownsRow } from '../comps/employee/EmployeeDropdownsRow.jsx';
 
 import { loadEmployees, removeEmployee } from "../store/action/employeeActions.js";
 import { setFilter } from "../store/action/filterActions.js";
@@ -100,11 +100,11 @@ class _EmployeeApp extends Component {
                     </Snackbar>
                     <EmployeeNavBar buildFilterBy={this.buildFilterBy} openSnackbar={this.openSnackbar} />
                     <div className="employee-secondary-container flex">
-                        <EmployeeSideNavBar buildFilterBy={this.buildFilterBy} />
+                        <EmployeeSideNavBar buildFilterBy={this.buildFilterBy}/>
                         <div className="employee-third-container">
                             <Pagination className="pagination-top" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                             <EmployeeSortingRow setSort={this.setSort} />
-                            <EmployeeDropdownsRow buildFilterBy={this.buildFilterBy} setSort={this.setSort}/>
+                            <EmployeeDropdownsRow buildFilterBy={this.buildFilterBy} setSort={this.setSort} />
                             <EmployeeList employees={this.paginateEmployeesForDisplay(employees, currPage, employeesPerPage)} onDelete={this.onDelete} />
                             <Pagination className="pagination-bottom" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                         </div>

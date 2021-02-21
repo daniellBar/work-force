@@ -19,6 +19,7 @@ class _EmployeeSideNavBar extends Component {
 
     render() {
         const { activeGroupFilter } = this.state
+        const groups = ['wifi', 'web', 'algorithms', 'automation infra', 'business', 'human-resources']
         return (
             <section className="employee-side-navbar">
                 <div className={`btn employees-btn ${activeGroupFilter === '' ? 'active' : ''}`} onClick={() => this.onClick('')}>
@@ -28,37 +29,20 @@ class _EmployeeSideNavBar extends Component {
                 <div className="filter-container">
                     <div className="title">group</div>
                     <div className="groups-container">
-                        <div className={`btn group-btn ${activeGroupFilter === 'wifi' ? 'active' : ''}`} onClick={() => this.onClick('wifi')}>
-                            <img className="group-icon" src={require("../../assets/icons/wifi.svg")} alt="" />
-                            <div className="group-name">wifi</div>
-                        </div>
-                        <div className={`btn group-btn ${activeGroupFilter === 'web' ? 'active' : ''}`} onClick={() => this.onClick('web')}>
-                            <img className="group-icon" src={require("../../assets/icons/web.svg")} alt="" />
-                            <div className="group-name">web</div>
-                        </div>
-                        <div className={`btn group-btn ${activeGroupFilter === 'algorithms' ? 'active' : ''}`} onClick={() => this.onClick('algorithms')}>
-                            <img className="group-icon" src={require("../../assets/icons/algorithm.svg")} alt="" />
-                            <div className="group-name">algorithms</div>
-                        </div>
-                        <div className={`btn group-btn ${activeGroupFilter === 'automation infra' ? 'active' : ''}`} onClick={() => this.onClick('automation infra')}>
-                            <img className="group-icon" src={require("../../assets/icons/automation.svg")} alt="" />
-                            <div>automation infra</div>
-                        </div>
-                        <div className={`btn group-btn ${activeGroupFilter === 'business' ? 'active' : ''}`} onClick={() => this.onClick('business')}>
-                            <img className="group-icon" src={require("../../assets/icons/business.svg")} alt="" />
-                            <div>business</div>
-                        </div>
-                        <div className={`btn group-btn ${activeGroupFilter === 'human-resources' ? 'active' : ''}`} onClick={() => this.onClick('human-resources')}>
-                            <img className="group-icon" src={require("../../assets/icons/human-resources.svg")} alt="" />
-                            <div className="group-name">human-resources</div>
-                        </div>
+                        {groups.map((groupName, idx) => {
+                            return (
+                                <div className={`btn group-btn ${activeGroupFilter === groupName ? 'active' : ''}`} onClick={() => this.onClick(groupName)} key={idx}>
+                                    <img className="group-icon" src={require(`../../assets/icons/${groupName}.svg`)} alt="" />
+                                    <div className="group-name">{groupName}</div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </section>
         )
     }
 }
-
 
 const mapStateToProps = state => {
     return {
