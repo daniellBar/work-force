@@ -4,13 +4,15 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
+
 export class EmployeePreview extends Component {
 
   state = {
-    isCollapsed: false
+    isCollapsed: false,
   }
 
   convertTimePeriods(months) {
+    if(!months) return '1 month'
     let periodsToDisplay = 'months'
     const numberToDisplay = months < 12 ? months : Math.floor((months / 12) * 10) / 10
     if (numberToDisplay !== months) {
@@ -26,6 +28,11 @@ export class EmployeePreview extends Component {
 
   onToggleExpend = () => {
     this.setState({ isCollapsed: !this.state.isCollapsed })
+  }
+
+  onClickEditBtn = (employee) => {
+    this.props.onSetSelectedEmployee(employee)
+    this.props.onToggleModal()
   }
 
   modifyLongText = (str) => {
@@ -54,7 +61,7 @@ export class EmployeePreview extends Component {
             <div className="seniority bold">{this.convertTimePeriods(employee.seniority)}</div>
           </div>
           <div className="col4">
-            <div className="btn edit-btn">
+            <div className="btn edit-btn" onClick={()=>this.onClickEditBtn(employee)}>
               <EditIcon />
             </div>
             <div className="vl"></div>
@@ -64,8 +71,8 @@ export class EmployeePreview extends Component {
           </div>
           <div className="col5">
             <div className="btn collapse-accordion-btn" onClick={this.onToggleExpend}>
-              {!isCollapsed && <ArrowDropDownIcon fontSize='large' htmlColor='#ffffff'/>}
-              {isCollapsed && <ArrowDropUpIcon fontSize='large' htmlColor='#ffffff'/>}
+              {!isCollapsed && <ArrowDropDownIcon fontSize='large' htmlColor='#ffffff' />}
+              {isCollapsed && <ArrowDropUpIcon fontSize='large' htmlColor='#ffffff' />}
             </div>
           </div>
         </div>
@@ -88,7 +95,6 @@ export class EmployeePreview extends Component {
           </div>
         </div>}
       </div>
-
     )
   }
 }

@@ -12,6 +12,19 @@ export function loadEmployees(filterBy = {}) {
   }
 }
 
+export function saveEmployee(employee) {
+  return async dispatch => {
+    try {
+      const actionType = employee._id ? 'EDIT_EMPLOYEE' : 'ADD_EMPLOYEE';
+      const _employee = await employeeService.save(employee);
+      dispatch({ type: actionType, _employee })
+    }
+    catch (err) {
+      console.log('employeeActions: err in saveEmployee ', err);
+    }
+  }
+}
+
 export function removeEmployee(employeeId) {
   return async dispatch => {
     try {

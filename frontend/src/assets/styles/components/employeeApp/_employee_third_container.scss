@@ -76,9 +76,13 @@
 .col0 {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex-basis: 100px;
     .profile-img {
-        object-fit: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
     }
 }
 

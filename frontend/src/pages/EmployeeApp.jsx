@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import { Pagination } from '@material-ui/lab';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+
 import { EmployeeList } from '../comps/employee/EmployeeList.jsx';
 import { EmployeeSideNavBar } from '../comps/employee/EmployeeSideNavBar.jsx';
 import { EmployeeNavBar } from '../comps/employee/EmployeeNavBar.jsx';
 import { EmployeeSortingRow } from '../comps/employee/EmployeeSortingRow.jsx';
 import { EmployeeDropdownsRow } from '../comps/employee/EmployeeDropdownsRow.jsx';
+import { EmployeeEdit } from '../comps/employee/EmployeeEdit.jsx';
+import { Modal } from '../comps/Modal.jsx';
 
 import { loadEmployees, removeEmployee } from "../store/action/employeeActions.js";
 import { setFilter } from "../store/action/filterActions.js";
@@ -23,7 +26,9 @@ class _EmployeeApp extends Component {
         },
         currPage: 1,
         employeesPerPage: 8,
-        isSnackbarOpen: false
+        isSnackbarOpen: false,
+        isModalOpen: false,
+        selectedEmployee: null
     }
 
     componentDidMount() {
@@ -88,6 +93,14 @@ class _EmployeeApp extends Component {
         this.setState({ isSnackbarOpen: true })
     }
 
+    toggleModal = () => {
+        this.setState({ isModalOpen: !this.state.isModalOpen })
+    }
+
+    setSelectedEmployee = (employee) => {
+        this.setState({ selectedEmployee: employee })
+    }
+
     render() {
         const employees = this.getSortedEmployees()
         const { currPage, employeesPerPage } = this.state
@@ -98,18 +111,27 @@ class _EmployeeApp extends Component {
                     <Snackbar open={this.state.isSnackbarOpen} autoHideDuration={4000} onClose={this.handleCloseSnackbar} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
                         <Alert onClose={this.handleCloseSnackbar} severity="error">Only Admin can perform this action</Alert>
                     </Snackbar>
-                    <EmployeeNavBar buildFilterBy={this.buildFilterBy} openSnackbar={this.openSnackbar} />
+                    <EmployeeNavBar buildFilterBy={this.buildFilterBy} openSnackbar={this.openSnackbar} onToggleModal={this.toggleModal} />
                     <div className="employee-secondary-container flex">
-                        <EmployeeSideNavBar buildFilterBy={this.buildFilterBy}/>
+                        <EmployeeSideNavBar buildFilterBy={this.buildFilterBy} />
                         <div className="employee-third-container">
                             <Pagination className="pagination-top" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                             <EmployeeSortingRow setSort={this.setSort} />
                             <EmployeeDropdownsRow buildFilterBy={this.buildFilterBy} setSort={this.setSort} />
-                            <EmployeeList employees={this.paginateEmployeesForDisplay(employees, currPage, employeesPerPage)} onDelete={this.onDelete} />
+                            <EmployeeList employees={this.paginateEmployeesForDisplay(employees, currPage, employeesPerPage)} onDelete={this.onDelete} onToggleModal={this.toggleModal} onSetSelectedEmployee={this.setSelectedEmployee} />
                             <Pagination className="pagination-bottom" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                         </div>
                     </div>
                 </div>
+                <Modal isOpen={this.state.isModalOpen}>
+                    <div className="modal-header">
+                        <h1 className="modal-title">{`${this.state.selectedEmployee ? 'Edit' : 'Add'} Employee`}</h1>
+                    </div>
+                    <EmployeeEdit employee={this.state.selectedEmployee} openSnackbar={this.openSnackbar} closeEdit={() => {
+                        this.setSelectedEmployee(null)
+                        this.toggleModal()
+                    }} />
+                </Modal>
             </section>
         )
     }

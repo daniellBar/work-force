@@ -1,11 +1,12 @@
-import {httpService} from './httpService.js'
+import { httpService } from './httpService.js'
 
 export const employeeService = {
     query,
-    remove
+    remove,
+    save
 }
 
-function query(filterBy={}) {
+function query(filterBy = {}) {
     const queryStr = Object.keys(filterBy).map((key) => {
         return `${key}=${filterBy[key]}`
     }).join('&');
@@ -13,7 +14,15 @@ function query(filterBy={}) {
 }
 
 function remove(employeeId) {
-return httpService.delete(`employee/${employeeId}`)
+    return httpService.delete(`employee/${employeeId}`)
+}
+
+function save(employee) {
+    if (employee._id) {
+        return httpService.put(`employee/${employee._id}`, employee)
+    } else {
+        return httpService.post(`employee`, employee)
+    }
 }
 
 
