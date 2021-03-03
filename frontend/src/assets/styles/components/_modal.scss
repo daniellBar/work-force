@@ -25,6 +25,7 @@
     @include for-mobile-layout {
         width: 90%;
         height:90%;
+        overflow-y: scroll;
       }
 }
 
