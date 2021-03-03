@@ -85,7 +85,7 @@ export class EmployeePreview extends Component {
             <div className="seniority light">{this.convertTimePeriods(employee.seniority)}</div>
           </div>
           <div className="preview-accordion-btns-container flex">
-            <div className="btn edit-btn">
+            <div className="btn edit-btn" onClick={()=>this.onClickEditBtn(employee)}>
               <EditIcon />
             </div>
             <div className="vl"></div>

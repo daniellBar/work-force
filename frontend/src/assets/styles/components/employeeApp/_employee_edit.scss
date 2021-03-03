@@ -10,7 +10,13 @@
     justify-content: center;
     .MuiFormControl-root {
         margin: 5px 0;
+        @include for-narrow-mobile-layout{
+            margin: 2px 0;
+        }
     }
+    @include for-mobile-layout {
+        flex-direction: column;
+      }
 }
 
 .left-side,
@@ -20,10 +26,20 @@
 }
 .left-side {
    width: 60%;
+   @include for-mobile-layout {
+    width: 100%;
+  }
 }
 .right-side{
     align-items: flex-end;
     width: 20%;
+    @include for-mobile-layout {
+        flex-direction: row;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        margin-top: 20px;
+      }
 }
 
 .upper {
@@ -35,6 +51,10 @@
         flex-direction: column;
         width: 100%;
     }
+    @include for-mobile-layout {
+        flex-direction: column;
+        margin-bottom: 0;
+      }
 }
 
 .lower {
@@ -63,6 +83,14 @@
         bottom: 5px;
         right: 0;
     }
+    @include for-narrow-mobile-layout{
+        width: 130px;
+        height: 130px;
+        .profile-img {
+            width: 130px;
+            height: 130px;
+        }
+    }
 }
 
 .save-btn, .cancel-btn {
@@ -72,6 +100,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    @include for-mobile-layout{
+        height: 30px;
+    }
 }
 
 .cancel-btn {
