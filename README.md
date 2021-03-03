@@ -14,9 +14,9 @@ username: daniel
 
 password: adminovski
 
-login page is not yet responsive.
-employee page is responsive for iphone plus
+
 
 to add on next commit:
+
 login creds validation
 
