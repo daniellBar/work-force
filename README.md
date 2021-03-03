@@ -19,4 +19,4 @@ employee page is responsive for iphone plus
 
 to add on next commit:
 1) login creds validation
-2) add/edit employee
+2) add/edit on mobile
