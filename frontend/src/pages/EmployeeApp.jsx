@@ -98,12 +98,24 @@ class _EmployeeApp extends Component {
     }
 
     setSelectedEmployee = (employee) => {
-        this.setState({ selectedEmployee: employee })
+        if (employee) {
+            const selectedEmployee = { ...employee }
+            const employees = this.getSortedEmployees()
+            const currIndex = employees.findIndex(employee => employee._id === selectedEmployee._id)
+            selectedEmployee.nextEmployee = employees[currIndex + 1] || employees[0]
+            selectedEmployee.prevEmployee = employees[currIndex - 1] || employees[employees.length - 1]
+            this.setState({ selectedEmployee: selectedEmployee })
+        }
+        else {
+            this.setState({ selectedEmployee: employee })
+        }
+
     }
 
     render() {
         const employees = this.getSortedEmployees()
         const { currPage, employeesPerPage } = this.state
+        const employee = this.state.selectedEmployee
         const numberOfPages = Math.ceil(employees.length / employeesPerPage)
         return (
             <section className="employee-app main-container">
@@ -118,7 +130,7 @@ class _EmployeeApp extends Component {
                             <Pagination className="pagination-top" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                             <EmployeeSortingRow setSort={this.setSort} />
                             <EmployeeDropdownsRow buildFilterBy={this.buildFilterBy} setSort={this.setSort} />
-                            <EmployeeList employees={this.paginateEmployeesForDisplay(employees, currPage, employeesPerPage)} onDelete={this.onDelete} onToggleModal={this.toggleModal} onSetSelectedEmployee={this.setSelectedEmployee} />
+                            <EmployeeList employees={this.paginateEmployeesForDisplay(employees, currPage, employeesPerPage)} onDelete={this.onDelete} toggleModal={this.toggleModal} setSelectedEmployee={this.setSelectedEmployee} />
                             <Pagination className="pagination-bottom" count={numberOfPages} size="small" page={currPage} onChange={(e, page) => this.onChangePage(page)} />
                         </div>
                     </div>
@@ -127,10 +139,7 @@ class _EmployeeApp extends Component {
                     <div className="modal-header">
                         <h1 className="modal-title">{`${this.state.selectedEmployee ? 'Edit' : 'Add'} Employee`}</h1>
                     </div>
-                    <EmployeeEdit employee={this.state.selectedEmployee} openSnackbar={this.openSnackbar} closeEdit={() => {
-                        this.setSelectedEmployee(null)
-                        this.toggleModal()
-                    }} />
+                    <EmployeeEdit employee={employee} openSnackbar={this.openSnackbar} toggleModal={this.toggleModal} setSelectedEmployee={this.setSelectedEmployee} />
                 </Modal>
             </section>
         )

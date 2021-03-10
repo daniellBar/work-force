@@ -10,12 +10,12 @@
     border-radius: 28px;
     .modal-header {
         margin-top: 30px;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         display: flex;
         justify-content: center;
         @include for-mobile-layout {
             margin-bottom: 15px;
-          }
+        }
         .modal-title {
             text-align: center;
             font-size: 2rem;
@@ -23,10 +23,10 @@
         }
     }
     @include for-mobile-layout {
-        width: 90%;
-        height:90%;
+        width: 95%;
+        height: 95%;
         overflow-y: scroll;
-      }
+    }
 }
 
 .overlay {

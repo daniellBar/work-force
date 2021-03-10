@@ -31,8 +31,8 @@ export class EmployeePreview extends Component {
   }
 
   onClickEditBtn = (employee) => {
-    this.props.onSetSelectedEmployee(employee)
-    this.props.onToggleModal()
+    this.props.setSelectedEmployee(employee)
+    this.props.toggleModal()
   }
 
   modifyLongText = (str) => {

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { TextField, MenuItem, InputLabel, Input, InputAdornment } from '@material-ui/core';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Icon from '@material-ui/core/Icon';
 import { cloudinaryService } from '../../services/cloudinaryService.js'
 import { saveEmployee } from '../../store/action/employeeActions.js'
@@ -27,6 +29,12 @@ class _EmployeeEdit extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.employee._id !== this.props.employee._id) {
+            this.setState({ employee: this.props.employee })
+        }
+    }
+
     handleChange = (prop) => async ({ target }) => {
         let value = target.type === 'number' ? +target.value : target.value
         if (prop === 'imgUrl') value = await cloudinaryService.uploadImg(target);
@@ -34,7 +42,7 @@ class _EmployeeEdit extends Component {
     }
 
     onCancelEdit = () => {
-        this.props.closeEdit()
+        this.closeEdit()
     }
 
     onClickSubmit = (e) => {
@@ -43,11 +51,20 @@ class _EmployeeEdit extends Component {
         loggedInUser && loggedInUser.isAdmin ? this.handleSubmit() : this.props.openSnackbar()
     }
 
-    handleSubmit=()=>{
+    handleSubmit = () => {
         let { employee } = this.state
         employee.imgUrl = employee.imgUrl ?? emptyProfileImg
         this.props.saveEmployee(employee)
-        this.props.closeEdit()
+        this.closeEdit()
+    }
+
+    closeEdit = () => {
+        this.props.setSelectedEmployee(null)
+        this.props.toggleModal()
+    }
+
+    moveToPrevNextEmployee = (employee) => {
+        this.props.setSelectedEmployee(employee)
     }
 
     render() {
@@ -56,14 +73,17 @@ class _EmployeeEdit extends Component {
         return (
             <section className="edit-container">
                 <form className="edit-form" onSubmit={this.onClickSubmit}>
-                    <div className="left-side">
-                        <div className="upper">
+                    <div className="edit-info">
+                        <div className="edit-info-upper">
                             <div className="edit-profile-pic">
                                 <img className={`profile-img ${employee.imgUrl ? 'edit-img' : 'empty-img'}`} src={employee.imgUrl || emptyProfileImg} alt="profile-img" />
-                                <InputLabel htmlFor="file-upload" className={`btn ${employee.imgUrl ? 'add' : 'edit'}-profile-img-btn`}>
-                                    <PhotoCameraIcon fontSize="large" />
+                                 <div className={`btn ${employee.imgUrl ? 'add' : 'edit'}-profile-img-btn`}>
+                                 <InputLabel htmlFor="file-upload" >
+                                    <PhotoCameraIcon style={{ fontSize: 32 }} color="action"/>
                                     <Input type="file" id="file-upload" inputProps={{ accept: "image/*" }} style={{ display: 'none' }} onChange={this.handleChange('imgUrl')} />
                                 </InputLabel>
+                                 </div>
+                 
                             </div>
                             <div className="edit-personal-info">
                                 <TextField label="Full Name" type="text" autoComplete="off" onChange={this.handleChange('name')} value={employee.name} />
@@ -82,8 +102,8 @@ class _EmployeeEdit extends Component {
                             </div>
                         </div>
 
-                        <div className="lower">
-                            <div className="edit-job-info">
+                        <div className="edit-info-lower">
+                            <div className="edit-job-info flex column">
                                 <TextField
                                     id="standard-select-currency"
                                     select
@@ -104,12 +124,16 @@ class _EmployeeEdit extends Component {
                         </div>
                     </div>
 
-                    <div className="right-side">
+                    <div className="form-btns">
                         <div className="btn save-btn" onClick={this.onClickSubmit}>Save</div>
                         <div className="btn cancel-btn" onClick={this.onCancelEdit}>Cancel</div>
                     </div>
 
                 </form>
+                {employee._id && <div className="edit-prev-next-btns">
+                    <ArrowBackIcon className="btn btn-prev" onClick={() => this.moveToPrevNextEmployee(employee.prevEmployee)} fontSize="large" />
+                    <ArrowForwardIcon className="btn btn-next" onClick={() => this.moveToPrevNextEmployee(employee.nextEmployee)} fontSize="large" />
+                </div>}
             </section>
         )
     }
