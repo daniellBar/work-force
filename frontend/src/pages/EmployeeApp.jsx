@@ -61,6 +61,11 @@ class _EmployeeApp extends Component {
 
     getSortedEmployees = () => {
         const { employees } = this.props
+        employees.forEach(employee => {
+            if (employee.seniority === undefined) {
+                employee.seniority = this._convertTimePeriods(employee.createdAt)
+            }
+        })
         const { by, direction } = this.state.sortBy
         employees.sort(utilsService.compareValues(by, direction))
         return employees
@@ -110,6 +115,12 @@ class _EmployeeApp extends Component {
             this.setState({ selectedEmployee: employee })
         }
 
+    }
+
+    _convertTimePeriods(createdAt) {
+        const employeeCreationDate = new Date(createdAt)
+        const now = new Date(Date.now())
+        return utilsService.getMonthsDiffBetweenDates(employeeCreationDate, now)
     }
 
     render() {

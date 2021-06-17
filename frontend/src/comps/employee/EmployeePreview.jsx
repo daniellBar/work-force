@@ -4,6 +4,9 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
+import { utilsService } from '../../services/utilsService.js'
+
+
 
 export class EmployeePreview extends Component {
 
@@ -11,14 +14,26 @@ export class EmployeePreview extends Component {
     isCollapsed: false,
   }
 
-  convertTimePeriods(months) {
-    if(!months) return '1 month'
-    let periodsToDisplay = 'months'
-    const numberToDisplay = months < 12 ? months : Math.floor((months / 12) * 10) / 10
-    if (numberToDisplay !== months) {
-      periodsToDisplay = numberToDisplay === 1 ? 'year' : 'years'
+  handleSeniorityDisplay({ seniority, createdAt }) {
+    const months = createdAt ? this._convertTimePeriods(createdAt) : seniority
+    return this._createStringForSeniorityDisplay(months)
+  }
+
+  _convertTimePeriods(createdAt) {
+    const employeeCreationDate = new Date(createdAt)
+    const now = new Date(Date.now())
+    return utilsService.getMonthsDiffBetweenDates(employeeCreationDate, now)
+  }
+
+  _createStringForSeniorityDisplay(months) {
+    if (months > 11) {
+      const years = Math.floor((months / 12) * 10) / 10
+      return `${years} ${years === 1 ? 'year' : 'years'}`
     }
-    return `${numberToDisplay} ${periodsToDisplay}`
+
+    else {
+      return `${months} months`
+    }
   }
 
   onDelete = (ev, employeeId) => {
@@ -58,10 +73,10 @@ export class EmployeePreview extends Component {
             <div className="sal bold">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ILS' }).format(employee.salary)}</div>
           </div>
           <div className="col3">
-            <div className="seniority bold">{this.convertTimePeriods(employee.seniority)}</div>
+            <div className="seniority bold">{this.handleSeniorityDisplay({ seniority: employee.seniority, createdAt: employee.createdAt })}</div>
           </div>
           <div className="col4">
-            <div className="btn edit-btn" onClick={()=>this.onClickEditBtn(employee)}>
+            <div className="btn edit-btn" onClick={() => this.onClickEditBtn(employee)}>
               <EditIcon />
             </div>
             <div className="vl"></div>
@@ -85,7 +100,7 @@ export class EmployeePreview extends Component {
             <div className="seniority light">{this.convertTimePeriods(employee.seniority)}</div>
           </div>
           <div className="preview-accordion-btns-container flex">
-            <div className="btn edit-btn" onClick={()=>this.onClickEditBtn(employee)}>
+            <div className="btn edit-btn" onClick={() => this.onClickEditBtn(employee)}>
               <EditIcon />
             </div>
             <div className="vl"></div>

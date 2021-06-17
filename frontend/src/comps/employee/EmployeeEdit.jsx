@@ -105,7 +105,7 @@ class _EmployeeEdit extends Component {
                         <div className="edit-info-lower">
                             <div className="edit-job-info flex column">
                                 <TextField
-                                    id="standard-select-currency"
+                                    id="select-group"
                                     select
                                     label="Group"
                                     value={employee.group}

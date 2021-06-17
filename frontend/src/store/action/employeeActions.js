@@ -7,7 +7,7 @@ export function loadEmployees(filterBy = {}) {
       dispatch({ type: 'SET_EMPLOYEES', employees })
     }
     catch (err) {
-      console.log('employeeActions: err in loademployees ', err);
+      console.log('employeeActions: err in loadEmployees ', err);
     }
   }
 }
