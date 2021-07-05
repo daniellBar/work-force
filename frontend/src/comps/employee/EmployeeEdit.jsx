@@ -139,10 +139,14 @@ class _EmployeeEdit extends Component {
     }
 
 }
-
+const mapStateToProps = state => {
+    return {
+        loggedInUser: state.userReducer.loggedInUser
+    }
+}
 
 const mapDispatchToProps = {
     saveEmployee
 }
 
-export const EmployeeEdit = connect(null, mapDispatchToProps)(_EmployeeEdit)
+export const EmployeeEdit = connect(mapStateToProps, mapDispatchToProps)(_EmployeeEdit)
