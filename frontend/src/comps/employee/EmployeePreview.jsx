@@ -97,7 +97,7 @@ export class EmployeePreview extends Component {
             <div className="salary bold">Salary:</div>
             <div className="salary light">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ILS' }).format(employee.salary)}</div>
             <div className="seniority bold">Seniority:</div>
-            <div className="seniority light">{this.convertTimePeriods(employee.seniority)}</div>
+            <div className="seniority light">{this.handleSeniorityDisplay({ seniority: employee.seniority, createdAt: employee.createdAt })}</div>
           </div>
           <div className="preview-accordion-btns-container flex">
             <div className="btn edit-btn" onClick={() => this.onClickEditBtn(employee)}>

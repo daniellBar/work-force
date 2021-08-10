@@ -28,7 +28,7 @@ class _EmployeeApp extends Component {
         employeesPerPage: 8,
         isSnackbarOpen: false,
         isModalOpen: false,
-        selectedEmployee: null
+        selectedEmployee: null,
     }
 
     componentDidMount() {
@@ -84,7 +84,12 @@ class _EmployeeApp extends Component {
 
     onDelete = (employeeId) => {
         const { loggedInUser } = this.props
-        loggedInUser && loggedInUser.isAdmin ? this.props.removeEmployee(employeeId) : this.openSnackbar()
+        loggedInUser && loggedInUser.isAdmin ? this.handleRemoveEmployee(employeeId) : this.openSnackbar()
+    }
+
+    handleRemoveEmployee = (employeeId) => {
+        this.props.removeEmployee(employeeId)
+        this.setState({ totalNumOfEmployees: this.state.totalNumOfEmployees - 1 })
     }
 
     handleCloseSnackbar = (e, reason) => {

@@ -1,5 +1,5 @@
 const initialState = {
-  filterBy:{name:'',group:''}
+  filterBy: { name: '', group: '' }
 }
 
 export function filterReducer(state = initialState, action) {
