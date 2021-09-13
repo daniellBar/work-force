@@ -1,33 +1,32 @@
-import {httpService} from './httpService.js'
+import { httpService } from "./httpService.js";
 
-const STORAGE_KEY = 'user';
+const STORAGE_KEY = "user";
 
-export const userService={
-    login,
-    getUser,
-    logout
-}
+export const userService = {
+  login,
+  getUser,
+  logout,
+};
 
 async function login(userCreds) {
-    const user = await httpService.post('auth/login', userCreds)
-    return _handleLogin(user)
-    
+  const user = await httpService.post("auth/login", userCreds);
+  return _handleLogin(user);
 }
 
 async function logout() {
-    await httpService.post(`auth/logout`)
-    sessionStorage.clear();
+  await httpService.post(`auth/logout`);
+  sessionStorage.clear();
 }
 
 function getUser() {
-    return _loadUser();
+  return _loadUser();
 }
 
 function _handleLogin(user) {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user))
-    return user;
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  return user;
 }
 
 function _loadUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY));
+  return JSON.parse(sessionStorage.getItem(STORAGE_KEY));
 }

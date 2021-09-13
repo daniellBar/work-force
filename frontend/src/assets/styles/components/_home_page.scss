@@ -1,4 +1,4 @@
-.home{
+.home {
   position: relative;
   height: 100%;
 }
@@ -14,10 +14,9 @@
   transform: translate(-50%, -50%);
   @include for-mobile-layout {
     width: 350px;
-    height:80%;
+    height: 80%;
   }
 }
-
 
 .login-container {
   height: 100%;

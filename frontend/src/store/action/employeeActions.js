@@ -1,38 +1,35 @@
-import { employeeService } from '../../services/employeeService.js'
+import { employeeService } from "../../services/employeeService.js";
 
 export function loadEmployees(filterBy = {}) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const employees = await employeeService.query(filterBy);
-      dispatch({ type: 'SET_EMPLOYEES', employees })
+      dispatch({ type: "SET_EMPLOYEES", employees });
+    } catch (err) {
+      console.log("employeeActions: err in loadEmployees ", err);
     }
-    catch (err) {
-      console.log('employeeActions: err in loadEmployees ', err);
-    }
-  }
+  };
 }
 
 export function saveEmployee(employee) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const actionType = employee._id ? 'EDIT_EMPLOYEE' : 'ADD_EMPLOYEE';
+      const actionType = employee._id ? "EDIT_EMPLOYEE" : "ADD_EMPLOYEE";
       const _employee = await employeeService.save(employee);
-      dispatch({ type: actionType, _employee })
+      dispatch({ type: actionType, _employee });
+    } catch (err) {
+      console.log("employeeActions: err in saveEmployee ", err);
     }
-    catch (err) {
-      console.log('employeeActions: err in saveEmployee ', err);
-    }
-  }
+  };
 }
 
 export function removeEmployee(employeeId) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      await employeeService.remove(employeeId)
-      dispatch({ type: 'REMOVE_EMPLOYEE', employeeId })
+      await employeeService.remove(employeeId);
+      dispatch({ type: "REMOVE_EMPLOYEE", employeeId });
+    } catch (err) {
+      console.log("employeeActions: err in removeEmployee ", err);
     }
-    catch (err) {
-      console.log('employeeActions: err in removeEmployee ', err);
-    }
-  }
+  };
 }

@@ -1,85 +1,85 @@
 //EmployeeHeader
 .employee-header {
-    min-height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  @include for-mobile-layout {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    align-items: start;
+    min-height: auto;
+  }
+  @include for-narrow-mobile-layout {
+    flex-direction: column-reverse;
+  }
+
+  .add-employee-btn {
+    background-color: $clr5;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: $clr1;
+    height: 47px;
     @include for-mobile-layout {
-        margin-bottom: 30px;
-        margin-top: 30px;
-        align-items: start;
-        min-height: auto;
+      font-size: rem(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
     }
     @include for-narrow-mobile-layout {
-        flex-direction: column-reverse;
+      margin-bottom: 15px;
     }
-
-    .add-employee-btn {
-        background-color: $clr5;
-        border-radius: 10px;
-        padding: 10px 20px;
-        color: $clr1;
-        height: 47px;
-        @include for-mobile-layout {
-            font-size: rem(12px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 5px;
-        }
-        @include for-narrow-mobile-layout {
-            margin-bottom: 15px;
-        }
-    }
+  }
 }
 
 //employee-secondary-container
 .employee-secondary-container {
-    width: 100%;
+  width: 100%;
 }
 
 //EmployeeSideNavBar
 .employee-side-navbar {
-    display: flex;
-    flex-direction: column;
-    background-color: $clr1;
-    border-radius: 10px;
-    margin-right: 30px;
-    flex-basis: 340px;
-    height: 590px;
-    @include for-mobile-layout {
-        display: none;
-    }
+  display: flex;
+  flex-direction: column;
+  background-color: $clr1;
+  border-radius: 10px;
+  margin-right: 30px;
+  flex-basis: 340px;
+  height: 590px;
+  @include for-mobile-layout {
+    display: none;
+  }
 }
 
 .title {
-    margin-left: 55px;
-    text-transform: uppercase;
-    color: $clr7;
+  margin-left: 55px;
+  text-transform: uppercase;
+  color: $clr7;
 }
 
 .group-btn,
 .employees-btn {
-    display: flex;
-    align-items: center;
-    margin: 0 30px;
-    height: 69px;
-    color: $clr8;
-    text-transform: capitalize;
-    margin-top: 5px;
-    &:hover {
-        background-color: $clr6;
-    }
-    &.active {
-        background-color: $clr6;
-    }
+  display: flex;
+  align-items: center;
+  margin: 0 30px;
+  height: 69px;
+  color: $clr8;
+  text-transform: capitalize;
+  margin-top: 5px;
+  &:hover {
+    background-color: $clr6;
+  }
+  &.active {
+    background-color: $clr6;
+  }
 }
 
 .group-icon,
 .employees-icon {
-    width: 30px;
-    height: 30px;
-    margin-left: 25px;
-    margin-right: 14px;
+  width: 30px;
+  height: 30px;
+  margin-left: 25px;
+  margin-right: 14px;
 }
